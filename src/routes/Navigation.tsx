@@ -6,6 +6,8 @@ import {
   Navigate
 } from 'react-router-dom';
 
+import ShoppingPage from '../02-component-patterns/pages/ShoppingPage';
+
 
 import logo from '../logo.svg';
 
@@ -17,7 +19,7 @@ export const Navigation = () => {
             <img src={ logo } alt='React Logo' />
           <ul>
             <li>
-              <NavLink to='/home' className={({ isActive }) => isActive ? 'nav-active' : '' }>Home</NavLink>
+              <NavLink to='/' className={({ isActive }) => isActive ? 'nav-active' : '' }>Shopping</NavLink>
             </li>
             <li>
               <NavLink to='/about' className={({ isActive }) => isActive ? 'nav-active' : '' }>About</NavLink>
@@ -29,11 +31,11 @@ export const Navigation = () => {
         </nav>
 
         <Routes>
-          <Route path='/home' element={ <span>Home</span> } />
+          <Route path='/' element={ <ShoppingPage /> } />
           <Route path='/about' element={ <span>About</span> } />
           <Route path='/users' element={ <span>Users</span> } />
 
-          <Route path='/*' element={<Navigate to='/home' replace />}/>
+          <Route path='/*' element={<Navigate to='/' replace />}/>
         </Routes>
       </div>
     </Router>
