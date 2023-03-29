@@ -15,21 +15,14 @@ export const useShoppingCart = () => {
 
     const onProductCountChange = ({ product, count }: onProductCountChangeProps) => {
         setShoppingCart((oldShoppingCart) => {
-            const initalProduct = { count: 0, ...product };
-            const productInCart: ProductInCart = oldShoppingCart[product.id] ?? initalProduct;
-
-            // suma el contador de productos - Mayor que 0
-            if (Math.max(productInCart.count + count, 0) > 0) {
-                productInCart.count += count;
-
-                return {
-                    ...oldShoppingCart,
-                    [product.id]: productInCart,
-                };
+            if (count === 0) {
+                const { [product.id]: ToDelete, ...rest } = oldShoppingCart;
+                return rest;
             }
-            // eliminar el producto del carrito de compra si el contador es menor o igual que 0
-            const { [product.id]: ToDelete, ...rest } = oldShoppingCart;
-            return { ...rest };
+            return {
+                ...oldShoppingCart,
+                [product.id]: { ...product, count },
+            };
         });
     };
 
@@ -38,15 +31,3 @@ export const useShoppingCart = () => {
         onProductCountChange,
     };
 };
-
-// setShoppingCart((oldShoppingCart) => {
-//   if (count === 0) {
-//     const { [product.id]: ToDelete, ...rest } = oldShoppingCart
-//     return rest
-//   }
-
-//   return {
-//     ...oldShoppingCart,
-//     [product.id]: { ...product, count }
-//   }
-// })
