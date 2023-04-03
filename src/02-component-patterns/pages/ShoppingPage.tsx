@@ -25,7 +25,6 @@ const ShoppingPage = () => {
                         <ProductButtons className='custom-buttons' />
                         <button onClick={reset}>Reset</button>
                         <button onClick={() => increaseBy(-2)}> -2</button>
-                        {/* si no se llega al isMaxCount, mostrar +2, si llega, lo ocultamos */}
                         {!isMaxCountReached && (
                             <button onClick={() => increaseBy(2)}>+2 sumar</button>
                         )}
